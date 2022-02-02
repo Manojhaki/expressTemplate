@@ -8,39 +8,19 @@ dotenv.config({ path: './config/config.env' });
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// route files
+const works = require('./routes/work');
+
+
+
+//mount routers
 app.use(express.json());
+
+app.use('/api/v1/works', works);
 const server = app.listen(PORT, console.log("Server is running in port: ", PORT));
 
 
-app.get('/api/v1/work', (req, res) => {
 
-    res.status(200).json({ success: true, msg: "show all work" });
-
-});
-
-app.get('/api/v1/work/:id', (req, res) => {
-
-    res.status(200).json({ success: true, msg: `get ${req.params.id} work` });
-
-});
-
-app.post('/api/v1/work', (req, res) => {
-
-    res.status(200).json({ success: true, msg: "create new work" });
-
-});
-
-app.put('/api/v1/work/:id', (req, res) => {
-
-    res.status(200).json({ success: true, msg: `update ${req.params.id} work` });
-
-});
-
-app.delete('/api/v1/work/:id', (req, res) => {
-
-    res.status(200).json({ success: true, msg: `delete ${req.params.id} work` });
-
-});
 // Handle undhandled promise rejections - kill app
 process.on("unhandledRejection", (err, promise) => {
     console.log(`Error: ${err.message}`);
