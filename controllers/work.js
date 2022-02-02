@@ -1,4 +1,5 @@
 
+const Work = require('../models/Work');
 
 // @desc get all the works
 // @route GET /api/v1/works
@@ -18,8 +19,12 @@ exports.getWork = (req, res, next) => {
 // @desc create new work
 // @route POST /api/v1/works
 // @access Private
-exports.createWork = (req, res, next) => {
-    res.status(200).json({ success: true, msg: "create new work" });
+exports.createWork = async (req, res, next) => {
+    const work = await Work.create(req.body);
+    res.status(201).json({
+        success: true,
+        data: work
+    });
 
 }
 

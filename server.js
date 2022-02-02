@@ -16,7 +16,8 @@ const PORT = process.env.PORT || 5000;
 // route files
 const works = require('./routes/work');
 
-
+// body parser
+app.use(express.json());
 
 
 //dev logging middle ware
