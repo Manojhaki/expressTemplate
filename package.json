@@ -1,0 +1,19 @@
+{
+  "name": "testend",
+  "version": "1.0.0",
+  "description": "testend",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production node server",
+    "dev": "nodemon server"
+  },
+  "author": "manoj",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^15.0.0",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
