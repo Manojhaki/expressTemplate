@@ -31,7 +31,8 @@ exports.getWork = async (req, res, next) => {
 
         res.status(200).json({ success: true, data: work })
     } catch (error) {
-        res.status(400).json({ success: false });
+        //res.status(400).json({ success: false });
+        next(err);
     }
     res.status(200).json({ success: true, msg: `get ${req.params.id} work` });
 
@@ -78,6 +79,26 @@ exports.deleteWork = async (req, res, next) => {
             res.status(400).json({ success: false });
         }
         res.status(200).json({ success: true, data: {} });
+    } catch (error) {
+        res.status(400).json({ success: false });
+
+    }
+};
+
+
+// @desc upload photo bootcamp
+// @route PUT /api/v1/works/:id/photo
+// @access Private
+exports.workPhotoUpload = async (req, res, next) => {
+    try {
+        const work = await Work.findByIdAndDelete(req.params.id);
+        if (!work) {
+            res.status(400).json({ success: false });
+        }
+
+        if (!req.files) {
+            return res.status(404).json({ success: false });
+        }
     } catch (error) {
         res.status(400).json({ success: false });
 

@@ -4,10 +4,13 @@ const { getWork,
     getWorks,
     createWork,
     updateWork,
-    deleteWork }
+    deleteWork,
+    workPhotoUpload }
     = require('../controllers/work')
 const router = express.Router();
 
+
+router.route('/:id/photo').put(workPhotoUpload);
 router
     .route('/')
     .get(getWorks)

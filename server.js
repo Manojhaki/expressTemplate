@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const colors = require('colors');
-
+const errorHandler = require('./middleware/error')
 const connectDB = require('./config/db');
 
 //load env vars
@@ -30,6 +30,9 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 
 app.use('/api/v1/works', works);
+
+
+app.use(errorHandler);
 const server = app.listen(PORT, console.log("Server is running in port: ".yellow.bold, PORT));
 
 // Handle undhandled promise rejections - kill app
